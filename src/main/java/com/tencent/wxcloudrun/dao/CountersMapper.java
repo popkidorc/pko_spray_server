@@ -3,9 +3,11 @@ package com.tencent.wxcloudrun.dao;
 import com.tencent.wxcloudrun.model.Counter;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-@Mapper
+@Repository
 public interface CountersMapper {
 
   Counter getCounter(@Param("id") Integer id);
@@ -13,4 +15,5 @@ public interface CountersMapper {
   void upsertCount(Counter counter);
 
   void clearCount(@Param("id") Integer id);
+
 }

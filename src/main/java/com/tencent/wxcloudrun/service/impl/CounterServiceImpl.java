@@ -7,20 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.List;
 
 @Service
 public class CounterServiceImpl implements CounterService {
 
-  final CountersMapper countersMapper;
+  @Autowired
+  private CountersMapper countersMapper;
 
-  public CounterServiceImpl(@Autowired CountersMapper countersMapper) {
-    this.countersMapper = countersMapper;
-  }
 
   @Override
-  public Optional<Counter> getCounter(Integer id) {
-    return Optional.ofNullable(countersMapper.getCounter(id));
+  public Counter getCounter(Integer id) {
+    return countersMapper.getCounter(id);
   }
 
   @Override
