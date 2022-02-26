@@ -7,10 +7,7 @@ import com.tencent.wxcloudrun.dto.CounterRequest;
 import com.tencent.wxcloudrun.model.Counter;
 import com.tencent.wxcloudrun.service.CounterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -20,7 +17,7 @@ import java.util.List;
  * counter控制器
  */
 @RestController
-
+@RequestMapping("/api")
 public class CounterController {
 
   final CounterService counterService;
@@ -36,7 +33,7 @@ public class CounterController {
    * 获取当前计数
    * @return API response json
    */
-  @GetMapping(value = "/api/count")
+  @RequestMapping(value = "/count")
   ApiResponse get() {
     logger.info("/api/count get request");
     Optional<Counter> counter = counterService.getCounter(1);
@@ -54,7 +51,7 @@ public class CounterController {
    * @param request {@link CounterRequest}
    * @return API response json
    */
-  @PostMapping(value = "/api/count")
+  @RequestMapping(value = "/countAdd")
   ApiResponse create(@RequestBody CounterRequest request) {
     logger.info("/api/count post request, action: {}", request.getAction());
 
