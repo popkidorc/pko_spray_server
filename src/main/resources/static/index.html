@@ -115,8 +115,8 @@
       });
     }
     function set(action) {
-      $.ajax("/api/count", {
-        method: "POST",
+      $.ajax("/api/countAdd", {
+        method: "post",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify({

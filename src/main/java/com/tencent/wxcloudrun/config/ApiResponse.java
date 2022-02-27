@@ -25,4 +25,29 @@ public final class ApiResponse {
   public static ApiResponse error(String errorMsg) {
     return new ApiResponse(0, errorMsg, new HashMap<>());
   }
+
+
+  public Integer getCode() {
+    return code;
+  }
+
+  public void setCode(Integer code) {
+    this.code = code;
+  }
+
+  public String getErrorMsg() {
+    return errorMsg;
+  }
+
+  public void setErrorMsg(String errorMsg) {
+    this.errorMsg = errorMsg;
+  }
+
+  public Object getData() {
+    return data;
+  }
+
+  public void setData(Object data) {
+    this.data = data;
+  }
 }
