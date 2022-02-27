@@ -2,14 +2,12 @@ package com.tencent.wxcloudrun.service.impl;
 
 import com.tencent.wxcloudrun.dao.CountersMapper;
 import com.tencent.wxcloudrun.model.Counter;
-import com.tencent.wxcloudrun.service.CounterService;
+import com.tencent.wxcloudrun.service.ICounterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
-public class CounterServiceImpl implements CounterService {
+public class CounterServiceImpl implements ICounterService {
 
   @Autowired
   private CountersMapper countersMapper;

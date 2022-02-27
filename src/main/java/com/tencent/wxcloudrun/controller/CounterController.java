@@ -5,13 +5,10 @@ import org.slf4j.LoggerFactory;
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.dto.CounterRequest;
 import com.tencent.wxcloudrun.model.Counter;
-import com.tencent.wxcloudrun.service.CounterService;
+import com.tencent.wxcloudrun.service.ICounterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.List;
 
 /**
  * counter控制器
@@ -21,7 +18,7 @@ import java.util.List;
 public class CounterController {
 
   @Autowired
-  private CounterService counterService;
+  private ICounterService counterService;
 
   private Logger logger = LoggerFactory.getLogger(CounterController.class);
 
