@@ -20,14 +20,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class CounterController {
 
-  final CounterService counterService;
-  final Logger logger;
+  @Autowired
+  private CounterService counterService;
 
-  public CounterController(@Autowired CounterService counterService) {
-    this.counterService = counterService;
-    this.logger = LoggerFactory.getLogger(CounterController.class);
-  }
-
+  private Logger logger = LoggerFactory.getLogger(CounterController.class);
 
   /**
    * 获取当前计数
