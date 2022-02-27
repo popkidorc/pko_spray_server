@@ -1,6 +1,9 @@
 package com.tencent.spray.udp.service;
 
 
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +13,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
 
+import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -27,8 +31,12 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
 	}
 
 	@Override
-	protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception {//接收客户端数据
-		System.out.println("UDP服务器收到消息: "+msg.content().toString(StandardCharsets.UTF_8));
+	protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception {
+		String ip=msg.sender().getAddress().getHostAddress();
+		int port=msg.sender().getPort();
+		logger.info(ip+":"+port+"-----------成功收到UDP消息------------");
+		//接收客户端数据
+		logger.info("UDP服务器收到消息: "+msg.content().toString(StandardCharsets.UTF_8));
 
 //		DatagramPacket dp = msg;
 //		ByteBuf buf = msg.content();
@@ -76,13 +84,13 @@ public class UDPServerHandler extends SimpleChannelInboundHandler<DatagramPacket
     	if(content == null) {
 			return;
 		}
-		ctx.write(content);
-    	ctx.flush();
-//    	byte [] resultByte = ByteBufUtil.decodeHexDump(content);
-//		ByteBuf encode = Unpooled.buffer(resultByte.length);
-//		encode.writeBytes(resultByte);
-//		DatagramPacket dp = new DatagramPacket(encode, msg.sender());
-//		ctx.writeAndFlush(dp);
+//		ctx.write(content);
+//    	ctx.flush();
+    	byte [] resultByte = ByteBufUtil.decodeHexDump(content);
+		ByteBuf encode = Unpooled.buffer(resultByte.length);
+		encode.writeBytes(resultByte);
+		DatagramPacket dp = new DatagramPacket(encode, msg.sender());
+		ctx.writeAndFlush(dp);
     }
     
 //	@Async

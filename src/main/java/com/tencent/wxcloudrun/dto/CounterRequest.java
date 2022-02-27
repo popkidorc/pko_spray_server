@@ -1,8 +1,5 @@
 package com.tencent.wxcloudrun.dto;
 
-import lombok.Data;
-
-@Data
 public class CounterRequest {
 
   // `action`：`string` 类型，枚举值

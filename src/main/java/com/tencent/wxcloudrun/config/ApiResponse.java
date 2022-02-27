@@ -1,10 +1,7 @@
 package com.tencent.wxcloudrun.config;
 
-import lombok.Data;
-
 import java.util.HashMap;
 
-@Data
 public final class ApiResponse {
 
   private Integer code;

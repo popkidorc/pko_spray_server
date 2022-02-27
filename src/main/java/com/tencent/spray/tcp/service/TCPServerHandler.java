@@ -17,6 +17,8 @@ public class TCPServerHandler extends ChannelInboundHandlerAdapter{
 
 	private static Logger logger = LoggerFactory.getLogger(TCPServerHandler.class);
 
+
+	//TODO 为了分布式和效率改为redis
 	private static ConcurrentMap<String, Channel> channelMap = new ConcurrentHashMap<String, Channel>();//管理连接的channel
 
 
@@ -30,9 +32,9 @@ public class TCPServerHandler extends ChannelInboundHandlerAdapter{
 	 */
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		System.out.println("TCP服务器收到消息: "+msg.toString());
+		logger.info("TCP服务器收到消息: "+msg.toString());
 
-		sendMessage(ctx, "收到TCP，回复"+msg.toString());
+		sendMessage(ctx, "收到TCP，返回");
 
 //		ByteBuf buf = (ByteBuf) msg;
 //		byte[] req = new byte[buf.readableBytes()];
